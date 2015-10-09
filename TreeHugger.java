@@ -1,18 +1,42 @@
 import java.lang.StringBuilder;
+import java.io.*;
 
 public class TreeHugger{
-	static String code = "++[>++[>++^-]^<++^-]>.>.^^<.";
+	static String code = "++++++++[>++++[>++>+++>+++>+^^^^-]>+>+>->>+[^]^-]>>.>---.+++++++..+++.>>.^-.^.+++.------.--------.>>+.>++.";
 	static String cmds = "+-<^>.[]";//"+-<^>,.";
 	static Tree data = new Tree(null);
 
 	public static void main(String[] args) {
-		read("++++++++[>++++[>++>+++>+++>+^^^^-]>+>+>->>+[^]^-]>>.>---.+++++++..+++.>>.^-.^.+++.------.--------.>>+.>++.");
-		read(code);
+		if( args.length!=0 && args[0].substring(args[0].length()-3).equals(".th"))
+		{
+			try {
+	            FileReader fileReader = 
+	                new FileReader(args[0]);
+
+	            BufferedReader bufferedReader = 
+	                new BufferedReader(fileReader);
+
+	            String line;
+	            String content = "";
+	            while((line = bufferedReader.readLine()) != null) {
+	                content += line+"\n";
+	            }   
+
+	            read(content);
+
+	            bufferedReader.close();         
+        	}
+        	catch(Exception e){ System.out.println(e.getMessage());}
+		}
+		else
+		{
+			read(code);
+		}
 	}
 
 	public static void read(String thc)
 	{
-		System.out.println("Code set: "+thc+"\n");
+		System.out.println("\nCode set: "+thc+"\n");
 		for(int i=0; i<thc.length();)
 		{
 			char nextChar = thc.charAt(i);
